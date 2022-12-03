@@ -3,7 +3,7 @@
 <suite name="main suite" parallel="methods" thread-count="2">
     <test name="Smoke test">
         <classes>
-            <class name="tests.CalculatorTest"/>
+            <class name="tests.testNG_HW.CalculatorTest"/>
             <class name="tests.PriorityTest"/>
         </classes>
     </test>

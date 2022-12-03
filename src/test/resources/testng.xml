@@ -3,7 +3,7 @@
 <suite name="main suite">
     <test name="Smoke test">
         <classes>
-            <class name="tests.CalculatorTest">
+            <class name="tests.testNG_HW.CalculatorTest">
                 <methods>
                     <include name="testSum"/>
                 </methods>
