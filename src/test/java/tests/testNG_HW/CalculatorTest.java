@@ -24,7 +24,7 @@ public class CalculatorTest extends BaseTest {
     @Test(testName = "Div with double divide by 0 exception")
     public void testDivDoubleByZeroException() {
         double result = calculator.div(5.2,0);
-        Assert.assertEquals(Double.isInfinite(result), Double.isInfinite(result), "Error of div by zero double");
+        Assert.assertTrue(Double.isInfinite(result), "Error of div by zero double");
     }
 
 }
