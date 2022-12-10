@@ -21,42 +21,55 @@ public class SmokeTest {
         driver = browsersFactory.getDriver();
     }
 
-    @Test
+    /*@Test
     public void validateCalculator() throws InterruptedException {
-        driver.get("https://clinic-cvetkov.ru/company/kalkulyator-imt/");
-        WebElement heightInput = driver.findElement(By.name("height"));
-        WebElement weightInput = driver.findElement(By.name("weight"));
-        WebElement calcButton = driver.findElement(By.id("calc-mass-c"));
-        heightInput.sendKeys("183");
-        weightInput.sendKeys("58");
-        calcButton.click();
-        Thread.sleep(2000);
-        WebElement result = driver.findElement(By.id("imt-result"));
-        Assert.assertEquals(result.getText(),
-                "17.3 - Недостаточная (дефицит) масса тела");
-    }
+        driver.get("https://kermi-fko.ru/raschety/Calc-Rehau-Solelec.aspx");
+        WebElement heightInput = driver.findElement(By.id("el_f_width"));
+        heightInput.sendKeys("4");
+        WebElement lenghtInput = driver.findElement(By.id("el_f_lenght"));
+        lenghtInput.sendKeys("5");
+        WebElement selectWebElement = driver.findElement(By.id("room_type"));
+        Select selectRoomType = new Select(selectWebElement);
+        selectRoomType.selectByValue("2");
+        selectWebElement = driver.findElement(By.id("heating_type"));
+        Select selectHeatingType = new Select(selectWebElement);
+        selectHeatingType.selectByVisibleText("Подогрев для комфорта");
+        WebElement heatLostInput = driver.findElement(By.id("el_f_losses"));
+        heatLostInput.sendKeys("22");
+        driver.findElement(By.className("buttHFcalc")).click();
+    }*/
     @Test
-    public void validateSKFTest() throws InterruptedException {
-        driver.get("http://13gp.by/informatsiya/meditsinskie-kalkulyatory/995-raschet-skorosti-klubochkovoj-filtratsii-skf");
-        WebElement selectWebElement = driver.findElement(By.id("oSex"));
-        Select selectSex = new Select(selectWebElement);
-        selectSex.selectByIndex(1);
-        Thread.sleep(2000);
-        selectSex.selectByValue("0");
-        Thread.sleep(2000);
-        selectSex.selectByVisibleText("женский");
-        Thread.sleep(2000);
-        driver.findElement(By.id("oCr")).sendKeys("80");
-        driver.findElement(By.id("oAge")).sendKeys("38");
-        driver.findElement(By.id("oWeight")).sendKeys("55");
-        driver.findElement(By.id("oHeight")).sendKeys("163");
-        driver.findElement(By.cssSelector("[type=\"button\"]")).click();
-        Assert.assertEquals(driver.findElement(By.id("txtMDRD")).getText(),"MDRD: 74 (мл/мин/1,73кв.м)");
-        Assert.assertEquals(driver.findElement(By.id("txtMDRD1")).getText(),"ХБП: 2 стадия (при наличии почечного повреждения)");
-
+    public void validateLaminateTest() throws InterruptedException {
+        driver.get("https://calc.by/building-calculators/laminate.html");
+        Thread.sleep(50000);
+        driver.findElement(By.id("ln_room_id")).clear();
+        driver.findElement(By.id("ln_room_id")).sendKeys("500");
+        driver.findElement(By.id("wd_room_id")).clear();
+        driver.findElement(By.id("wd_room_id")).sendKeys("400");
+        driver.findElement(By.id("ln_lam_id")).clear();
+        driver.findElement(By.id("ln_lam_id")).sendKeys("2000");
+        driver.findElement(By.id("wd_lam_id")).clear();
+        driver.findElement(By.id("wd_lam_id")).sendKeys("200");
+        driver.findElement(By.id("n_packing")).clear();
+        driver.findElement(By.id("n_packing")).sendKeys("8");
+        driver.findElement(By.id("min_length_segment_id")).clear();
+        driver.findElement(By.id("min_length_segment_id")).sendKeys("250");
+        driver.findElement(By.id("indent_walls_id")).clear();
+        driver.findElement(By.id("indent_walls_id")).sendKeys("10");
+        WebElement selectWebElement = driver.findElement(By.id("laying_method_laminate"));
+        Select selectMethodOfLayingType = new Select(selectWebElement);
+        selectMethodOfLayingType.selectByVisibleText("с использованием отрезанного элемента");
+        driver.findElement(By.id("direction-laminate-id1")).click();
+        driver.findElement(By.cssSelector("[class = 'calc-btn']")).click();
+        WebElement resultOfQuantity = driver.findElement(By.xpath("//div[contains( text(), 'Требуемое количество')]"));
+        Assert.assertEquals(resultOfQuantity.getText(),"Требуемое количество досок ламината: 53");
+        WebElement resultOfQuantityPacks = driver.findElement(By.xpath("//div[contains( text(), 'Количество упаковок')]"));
+        Assert.assertEquals(resultOfQuantityPacks.getText(),"Количество упаковок ламината: 7");
     }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(3000);
         driver.quit();
     }
 }
