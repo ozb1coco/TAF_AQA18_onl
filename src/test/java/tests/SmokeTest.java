@@ -21,7 +21,7 @@ public class SmokeTest {
         driver = browsersFactory.getDriver();
     }
 
-    /*@Test
+    @Test
     public void validateCalculator() throws InterruptedException {
         driver.get("https://kermi-fko.ru/raschety/Calc-Rehau-Solelec.aspx");
         WebElement heightInput = driver.findElement(By.id("el_f_width"));
@@ -37,11 +37,14 @@ public class SmokeTest {
         WebElement heatLostInput = driver.findElement(By.id("el_f_losses"));
         heatLostInput.sendKeys("22");
         driver.findElement(By.className("buttHFcalc")).click();
-    }*/
+        Assert.assertEquals(driver.findElement(By.id("floor_cable_power")).getAttribute("value"), "12");
+        Assert.assertEquals(driver.findElement(By.id("spec_floor_cable_power")).getAttribute("value"),"1");
+
+    }
     @Test
     public void validateLaminateTest() throws InterruptedException {
         driver.get("https://calc.by/building-calculators/laminate.html");
-        Thread.sleep(50000);
+        Thread.sleep(10000);
         driver.findElement(By.id("ln_room_id")).clear();
         driver.findElement(By.id("ln_room_id")).sendKeys("500");
         driver.findElement(By.id("wd_room_id")).clear();
