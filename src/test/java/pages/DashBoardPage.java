@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class DashboardPage extends BasePage {
+    private final static String pagePath = "index.php?/dashboard";
 
     private final By headerTitleLabelLocator = By.xpath("//div[contains(text(), 'All Projects')]");
-    private final static String pagePath = "index.php?/dashboard";
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -15,7 +15,10 @@ public class DashboardPage extends BasePage {
 
     public DashboardPage(WebDriver driver, boolean openPageByUrl) {
         super(driver);
-        if (openPageByUrl) {openPageByUrl();}
+
+        if (openPageByUrl) {
+            openPageByUrl();
+        }
     }
 
     @Override
@@ -26,5 +29,4 @@ public class DashboardPage extends BasePage {
     public void openPageByUrl() {
         super.openPageByUrl(pagePath);
     }
-
 }

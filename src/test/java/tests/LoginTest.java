@@ -2,19 +2,15 @@ package tests;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
-import factory.BrowserFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    //@Test
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.getEmailInput().sendKeys(ReadProperties.username());
@@ -39,5 +35,14 @@ public class LoginTest extends BaseTest {
                 .getErrorTextElement().getText(),
                 "Email/Login or Password is incorrect. Please try again."
         );
+    }
+
+    @Test
+    public void addProjectTest() {
+        userStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
+        projectSteps.addProject("WP_01");
+
+        Assert.assertEquals(driver.findElement(By.className("page_title")).getText(),
+                "WP_01");
     }
 }
