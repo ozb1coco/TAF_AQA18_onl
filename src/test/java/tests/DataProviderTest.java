@@ -5,18 +5,16 @@ import org.testng.annotations.Test;
 import tests.date.StaticProvider;
 import tests.testNG_HW.Calculator;
 
-public class DataProviderTest {
+public class DataProviderTest extends BaseTest {
     Calculator calculator = new Calculator();
-    @Test(dataProvider = "dataForSumTest", dataProviderClass = StaticProvider.class, threadPoolSize = 2)
-    public void testSumm6(int a, int b, int expected) {
-        Assert.assertEquals(calculator.sum(a, b), expected, "Error of summ");
-    }
     @Test(dataProvider = "dataForDivTestInt", dataProviderClass = StaticProvider.class)
-    public void testDivInt(int a, int b, int expected){
-        Assert.assertEquals(calculator.div(a,b), expected, "Error of div int");
+    public void testDivInt(int fistNum, int secondNum, int expected){
+        double divResult = calculator.div(fistNum,secondNum);
+        Assert.assertEquals(divResult, expected);
     }
     @Test(dataProvider = "dataForDivTestDouble", dataProviderClass = StaticProvider.class)
-    public void testDivDouble(double a, double b, double expected){
-        Assert.assertEquals(calculator.div(a,b), expected, "Error of div double");
+    public void testDivDouble(double fistNum, double secondNum, double expected){
+        double divResult = calculator.div(fistNum, secondNum);
+        Assert.assertEquals(divResult,expected);
     }
 }

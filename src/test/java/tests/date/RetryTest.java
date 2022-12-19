@@ -11,12 +11,11 @@ public class RetryTest extends BaseTest {
     @Test (retryAnalyzer = Retry.class)
     public void flakyTest() {
         if (attempt == 3) {
-            Assert.assertTrue(true);
+            Assert.assertEquals(calculator.div(15,5),3);
         } else {
             attempt++;
             System.out.println("Attempt is: " + attempt);
-            throw new NullPointerException();
-            // Assert.assertTrue(false);
+            Assert.assertEquals(calculator.div(15,5),2);
         }
     }
 }
