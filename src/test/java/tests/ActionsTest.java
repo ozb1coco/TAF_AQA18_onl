@@ -34,7 +34,7 @@ public class ActionsTest extends BaseTest {
         driver.get("http://the-internet.herokuapp.com/upload");
 
         WebElement fileUploadElement = waitsService.waitForExists(By.xpath("//input[@type='file']"));
-        String pathToFile = ActionsTest.class.getClassLoader().getResource("download.jpeg").getPath();
+        String pathToFile = ActionsTest.class.getClassLoader().getResource("download.jpeg").getPath().substring(1);
         System.out.println(pathToFile);
 
         fileUploadElement.sendKeys(pathToFile);

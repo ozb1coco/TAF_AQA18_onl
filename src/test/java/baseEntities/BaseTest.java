@@ -1,7 +1,7 @@
 package baseEntities;
 
 import configuration.ReadProperties;
-import factory.BrowserFactory;
+import factory.BrowsersFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +17,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new BrowserFactory().getDriver();
+        driver = new BrowsersFactory().getDriver();
         waitsService = new WaitsService(driver);
         //driver.get(ReadProperties.getUrl());
 
