@@ -7,10 +7,9 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
     // Блок описания локаторов для эментов
-    private final By emailInputLocator = By.id("user-name");
+    private final By usernameInputLocator = By.id("user-name");
     private final By passwordInputLocator = By.id("password");
     private final By logInButtonLocator = By.id("login-button");
-    private final By errorTextLocator = By.xpath("//h3[contains(text(),'Epic sadface')]");
 
     // Блок иницализации страницы
     public LoginPage(WebDriver driver) {
@@ -22,9 +21,9 @@ public class LoginPage extends BasePage {
         return logInButtonLocator;
     }
 
-    // Блок атомарных методов
-    public WebElement getEmailInput() {
-        return driver.findElement(emailInputLocator);
+
+    public WebElement getUsernameInput() {
+        return driver.findElement(usernameInputLocator);
     }
 
     public WebElement getPassword() {
@@ -35,7 +34,4 @@ public class LoginPage extends BasePage {
         return driver.findElement(logInButtonLocator);
     }
 
-    public WebElement getErrorTextElement() {
-        return driver.findElement(errorTextLocator);
-    }
 }

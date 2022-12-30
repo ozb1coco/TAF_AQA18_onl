@@ -9,7 +9,7 @@ public class CheckoutPage extends BasePage {
 
     private final static String pagePath = "checkout-step-one.html";
 
-    private final By headerTitleLabelLocator = By.xpath("//span[contains(text(),'Checkout: Your Information')]");
+    private final By checkoutPageLocator = By.xpath("//span[contains(text(),'Checkout: Your Information')]");
     private final By firstNameCheckoutLocator = By.id("first-name");
     private final By lastNameCheckoutLocator = By.id("last-name");
     private final By postalCodeCheckoutLocator = By.id("postal-code");
@@ -19,17 +19,9 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
-    public CheckoutPage(WebDriver driver, boolean openPageByUrl) {
-        super(driver);
-
-        if (openPageByUrl) {
-            openPageByUrl();
-        }
-    }
-
     @Override
     protected By getPageIdentifier() {
-        return headerTitleLabelLocator;
+        return checkoutPageLocator;
     }
 
     public void openPageByUrl() {
