@@ -4,8 +4,6 @@ import baseEntities.BaseTest;
 import configuration.ReadProperties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.InventoryPage;
-import pages.LoginPage;
 
 public class SauceDemoPaymentTests extends BaseTest {
 
