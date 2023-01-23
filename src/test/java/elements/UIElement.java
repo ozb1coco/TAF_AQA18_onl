@@ -1,6 +1,5 @@
 package elements;
 
-import org.checkerframework.checker.guieffect.qual.UI;
 import org.openqa.selenium.*;
 import services.WaitsService;
 
@@ -81,15 +80,6 @@ public class UIElement implements WebElement {
         return webElement.findElements(by);
     }
 
-    public List<UIElement> findUIElements(By by) {
-        ArrayList<UIElement> list = new ArrayList<>();
-        for (WebElement element : webElement.findElements(by)) {
-            list.add(new UIElement(driver, element));
-        }
-
-        return list;
-    }
-
     @Override
     public WebElement findElement(By by) {
         return webElement.findElement(by);
@@ -97,6 +87,14 @@ public class UIElement implements WebElement {
 
     public UIElement findUIElement(By by) {
         return new UIElement(driver, webElement.findElement(by));
+    }
+
+    public List<UIElement> findUIElements(By by) {
+        List<UIElement> list = new ArrayList<>();
+        for (WebElement element : webElement.findElements(by)) {
+            list.add(new UIElement(driver, element));
+        }
+        return list;
     }
 
     @Override
