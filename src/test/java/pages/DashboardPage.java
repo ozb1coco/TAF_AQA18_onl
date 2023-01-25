@@ -1,10 +1,8 @@
 package pages;
 
 import baseEntities.BasePage;
-import elements.UIElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class DashboardPage extends BasePage {
     private final static String pagePath = "index.php?/dashboard";
@@ -15,6 +13,11 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
+    @Override
+    protected By getPageIdentifier() {
+        return null;
+    }
+
     public DashboardPage(WebDriver driver, boolean openPageByUrl) {
         super(driver);
 
@@ -23,16 +26,7 @@ public class DashboardPage extends BasePage {
         }
     }
 
-    @Override
-    protected By getPageIdentifier() {
-        return headerTitleLabelLocator;
-    }
-
     public void openPageByUrl() {
         super.openPageByUrl(pagePath);
-    }
-
-    public UIElement getProjectElement(String projectName) {
-        return new UIElement(driver, By.linkText(projectName));
     }
 }

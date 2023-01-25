@@ -1,5 +1,6 @@
 package baseEntities;
 
+
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,15 @@ public abstract class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         waitsService = new WaitsService(driver);
+
+//        int timeCount = 0;
+//        while (!isPageOpened() && timeCount < 30) {
+//            Thread.sleep(1000);
+//            timeCount++;
+//        }
+//        if (!isPageOpened()) {
+//            throw new Exception("");
+//        }
     }
 
     protected abstract By getPageIdentifier();

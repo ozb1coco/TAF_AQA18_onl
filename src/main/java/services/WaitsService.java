@@ -1,8 +1,14 @@
 package services;
 
 import configuration.ReadProperties;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -27,10 +33,6 @@ public class WaitsService {
 
     public boolean waitForElementInvisible(WebElement webElement) {
         return wait.until(ExpectedConditions.invisibilityOf(webElement));
-    }
-
-    public WebElement waitForElementVisible(WebElement webElement) {
-        return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public List<WebElement> waitForAllVisibleElementsLocatedBy(By locator) {

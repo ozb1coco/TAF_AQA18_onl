@@ -1,22 +1,20 @@
 package steps;
-
 import baseEntities.BaseStep;
+import models.Project;
 import org.openqa.selenium.WebDriver;
-import pages.DashboardPage;
-import pages.project.TestCasePage;
 
 public class ProjectSteps extends BaseStep {
-    private DashboardPage dashboardPage;
+
 
     public ProjectSteps(WebDriver driver) {
         super(driver);
-
-        dashboardPage = new DashboardPage(driver);
     }
 
-    public TestCasePage openProjectOverview(String projectName) {
-        dashboardPage.getProjectElement(projectName).click();
+    public void updateProject() {
 
-        return new TestCasePage(driver);
+    }
+
+    public void deleteProject() {
+
     }
 }

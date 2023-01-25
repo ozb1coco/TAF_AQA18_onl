@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import services.WaitsService;
 import steps.ProjectSteps;
-import steps.TestCaseStep;
 import steps.UserStep;
 import utils.InvokedListener;
 
@@ -20,7 +19,6 @@ public class BaseTest {
     protected WebDriver driver;
     protected UserStep userStep;
     protected ProjectSteps projectSteps;
-    protected TestCaseStep testCasesSteps;
     protected WaitsService waitsService;
 
     @BeforeMethod
@@ -35,7 +33,6 @@ public class BaseTest {
 
         userStep = new UserStep(driver);
         projectSteps = new ProjectSteps(driver);
-        testCasesSteps = new TestCaseStep(driver);
     }
 
     @AfterMethod
@@ -47,6 +44,7 @@ public class BaseTest {
                 byte[] srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
                 saveScreenshot(srcFile);
             } catch (NoSuchSessionException ex) {
+
             }
         }
         */
@@ -58,4 +56,5 @@ public class BaseTest {
     private byte[] saveScreenshot(byte[] screenshot) {
         return screenshot;
     }
+    // Solution - 2: Finish
 }
