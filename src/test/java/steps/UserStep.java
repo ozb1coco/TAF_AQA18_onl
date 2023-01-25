@@ -1,5 +1,6 @@
 package steps;
 
+
 import baseEntities.BaseStep;
 import io.qameta.allure.Step;
 import models.User;
@@ -17,9 +18,9 @@ public class UserStep extends BaseStep {
     }
 
     public void login(String email, String psw) {
-        loginPage.emailInput.sendKeys(email);
-        loginPage.passwordInput.sendKeys(psw);
-        loginPage.logInButton.click();
+        loginPage.getEmailInput().sendKeys(email);
+        loginPage.getPassword().sendKeys(psw);
+        loginPage.getLogInButton().click();
     }
 
     @Step
@@ -28,9 +29,10 @@ public class UserStep extends BaseStep {
 
         return new DashboardPage(driver);
     }
+
     @Step
     public DashboardPage loginSuccessful(User user) {
-       return loginSuccessful(user.getEmail(), user.getPassword());
+        return loginSuccessful(user.getEmail(), user.getPassword());
     }
 
     public LoginPage loginIncorrect(String email, String psw) {

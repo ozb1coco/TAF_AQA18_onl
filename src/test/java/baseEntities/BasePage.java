@@ -1,6 +1,5 @@
 package baseEntities;
 
-
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

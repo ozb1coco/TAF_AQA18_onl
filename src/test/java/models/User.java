@@ -14,7 +14,7 @@ public class User {
             newUser.email = value;
             return this;
         }
-        public Builder withPasssword(String value){
+        public Builder withPassword(String value){
             newUser.password = value;
             return this;
         }

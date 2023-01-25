@@ -13,17 +13,17 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
-    @Override
-    protected By getPageIdentifier() {
-        return null;
-    }
-
     public DashboardPage(WebDriver driver, boolean openPageByUrl) {
         super(driver);
 
         if (openPageByUrl) {
             openPageByUrl();
         }
+    }
+
+    @Override
+    protected By getPageIdentifier() {
+        return headerTitleLabelLocator;
     }
 
     public void openPageByUrl() {

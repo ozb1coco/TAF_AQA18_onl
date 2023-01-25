@@ -31,7 +31,7 @@ public class MilestoneTest {
         Milestone milestone2 = Milestone.builder()
                 .name("ML_02")
                 .id(3)
-                .completed(false)
+                .completed(true)
                 .build();
         System.out.println(milestone2.toString());
         Assert.assertTrue(milestone2.equals(milestone1));
