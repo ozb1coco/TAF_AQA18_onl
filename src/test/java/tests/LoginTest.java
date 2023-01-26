@@ -15,7 +15,7 @@ import steps.UserStep;
 
 public class LoginTest extends BaseTest {
 
-    //@Test
+    @Test
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.getEmailInput().sendKeys(ReadProperties.username());
@@ -53,7 +53,7 @@ public class LoginTest extends BaseTest {
         );
     }
 
-    //@Test
+    @Test
     public void addProjectTest() {
         Project project = new Project();
         project.setName("WP_01");
@@ -63,6 +63,4 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(driver.findElement(By.className("page_title")).getText(),
                 project.getName());
     }
-
-
 }
