@@ -1,34 +1,24 @@
 package pages;
 
-import baseEntities.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import baseEntities.BasePage;
 
 public class LoginPage extends BasePage {
-    // Блок описания локаторов для эментов
-    @FindBy (id = "name")
-    public WebElement emailInput;
-
-    @FindBy (id = "password")
+    @FindBy(id = "user-name")
+    public WebElement userNameInput;
+    @FindBy(id = "password")
     public WebElement passwordInput;
-
-    @FindBy (id = "button_primary")
+    @FindBy(id = "login-button")
     public WebElement logInButton;
 
-    @FindBy (className = "error-text")
-    public WebElement errorText;
-
-    // Блок иницализации страницы
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    protected By getPageIdentifier() {
-        return null;
+    protected WebElement getPageIdentifier() {
+        return logInButton;
     }
-
-    // Блок атомарных методов
 }

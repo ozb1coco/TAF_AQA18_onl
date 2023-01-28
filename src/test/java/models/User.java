@@ -1,46 +1,69 @@
 package models;
 
+
 public class User {
-    private String firstname;
-    private String lastname;
-    private String email;
+    private String username;
     private String password;
-    public static class Builder{
+    private String firstName;
+    private String lastName;
+    private String zipCode;
+
+    public static class Builder {
         private User newUser;
-        public Builder(){
+
+
+        public Builder() {
             newUser = new User();
         }
-        public Builder withEmail(String value){
-            newUser.email = value;
+
+
+        public Builder withUsername(String value) {
+            newUser.username = value;
             return this;
         }
-        public Builder withPasssword(String value){
+
+        public Builder withPassword(String value) {
             newUser.password = value;
             return this;
         }
-        public Builder withFirstname(String value){
-            newUser.firstname = value;
+
+        public Builder withFirsName(String value) {
+            newUser.firstName = value;
             return this;
         }
-        public Builder withLastname(String value){
-            newUser.firstname = value;
+
+        public Builder withLastname(String value) {
+            newUser.lastName = value;
             return this;
         }
-        public User build(){
+
+        public Builder withZipCode(String value) {
+            newUser.zipCode = value;
+            return this;
+        }
+
+        public User build() {
             return newUser;
         }
     }
-    public String getFirstname(){
-        return firstname;
+
+    public String getUsername() {
+        return username;
     }
-    public String getLastname(){
-        return lastname;
-    }
-    public String getEmail(){
-        return email;
-    }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
 }
