@@ -18,4 +18,5 @@ public abstract class BasePage {
     public boolean isPageOpened() {
         return getPageIdentifier().isDisplayed();
     }
+
 }
