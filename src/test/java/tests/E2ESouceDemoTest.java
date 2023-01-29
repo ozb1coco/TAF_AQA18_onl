@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import baseEntities.BaseTest;
 import models.User;
 
-public class E2ETestSouceDemo extends BaseTest {
+public class E2ESouceDemoTest extends BaseTest {
     Logger logger = LogManager.getLogger();
     @Test
     public void successfulOrderTest() {
