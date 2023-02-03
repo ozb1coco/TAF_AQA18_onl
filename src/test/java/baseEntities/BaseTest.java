@@ -1,28 +1,35 @@
 package baseEntities;
 
-
+import com.codeborne.selenide.AssertionMode;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import configuration.ReadProperties;
-import factory.BrowserFactory;
-import org.openqa.selenium.WebDriver;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import steps.UserSteps;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
+
 
 public class BaseTest {
-    protected WebDriver driver;
     protected UserSteps userSteps;
 
-
-    @BeforeMethod
+    @BeforeSuite
     public void setUp() {
-        driver = new BrowserFactory().getDriver();
-        driver.get(ReadProperties.getUrl());
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        userSteps = new UserSteps(driver);
+        Configuration.browser = ReadProperties.browserName();
+        Configuration.baseUrl = ReadProperties.getUrl();
+        Configuration.timeout = 30000;
+
+        open("");
+
+        userSteps = new UserSteps();
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        closeWebDriver();
     }
 }

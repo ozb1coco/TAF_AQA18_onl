@@ -1,26 +1,19 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import baseEntities.BasePage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
-public class OverviewPage extends BasePage {
-    Logger logger = LogManager.getLogger();
-    @FindBy(id = "finish")
-    public WebElement buttonFinish;
-    @FindBy(xpath = "//*[text()='Your order has been dispatched, and will arrive just as fast as the pony can get there!']")
-    WebElement completePage;
+import static com.codeborne.selenide.Selenide.$;
 
-    public OverviewPage(WebDriver driver) {
-        super(driver);
-        logger.info("PageFactory pattern is implemented in OverviewPage class");
+public class OverviewPage {
+    private final By buttonFinishLocator = By.id("finish");
+    private final By successfulOrderPageLocator = By.xpath("//*[text()='Your order has been dispatched, and will arrive just as fast as the pony can get there!']");
+
+    public SelenideElement getButtonFinishLocator() {
+        return $(buttonFinishLocator);
     }
 
-    @Override
-    protected WebElement getPageIdentifier() {
-        return completePage;
+    public SelenideElement successfulOrderPage() {
+        return $(successfulOrderPageLocator);
     }
 }

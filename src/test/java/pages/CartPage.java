@@ -1,25 +1,23 @@
 package pages;
 
-import baseEntities.BasePage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 
-public class CartPage extends BasePage {
-    private Logger logger = LogManager.getLogger();
-    @FindBy(id = "checkout")
-    public WebElement buttonCheckOut;
+public class CartPage {
+    private final static String pagePath = "cart.html";
 
-    public CartPage(WebDriver driver) {
-        super(driver);
-        logger.info("PageFactory pattern is implemented in CartPage class");
+    private By checkoutButtonLocator = By.id("checkout");
+
+    public void openPageByUrl() {
+        open(pagePath);
     }
 
-    @Override
-    protected WebElement getPageIdentifier() {
-        return buttonCheckOut;
+    public SelenideElement getCheckoutButton() {
+        return $(checkoutButtonLocator).shouldBe(visible);
     }
 }

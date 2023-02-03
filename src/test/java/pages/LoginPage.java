@@ -1,28 +1,26 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import baseEntities.BasePage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
-public class LoginPage extends BasePage {
-    Logger logger = LogManager.getLogger();
-    @FindBy(id = "user-name")
-    public WebElement userNameInput;
-    @FindBy(id = "password")
-    public WebElement passwordInput;
-    @FindBy(id = "login-button")
-    public WebElement logInButton;
+import static com.codeborne.selenide.Selenide.$;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        logger.info("PageFactory pattern is implemented in LoginPage class");
+public class LoginPage {
+    private By userNameInputLocator = By.id("user-name");
+
+    private By passwordInputLocator = By.id("password");
+
+    private By logInButtonLocator = By.id("login-button");
+
+    public SelenideElement getUserNameInputLocator() {
+        return $(userNameInputLocator);
     }
 
-    @Override
-    protected WebElement getPageIdentifier() {
-        return logInButton;
+    public SelenideElement getPasswordInputLocator() {
+        return $(passwordInputLocator);
+    }
+
+    public SelenideElement getLogInButtonLocator() {
+        return $(logInButtonLocator);
     }
 }

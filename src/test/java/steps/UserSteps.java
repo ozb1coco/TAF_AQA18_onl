@@ -1,33 +1,25 @@
 package steps;
 
-import org.openqa.selenium.WebDriver;
-import baseEntities.BaseStep;
 import models.User;
 import pages.LoginPage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class UserSteps extends BaseStep {
+public class UserSteps {
     private LoginPage loginPage;
-    Logger loggerUser = LogManager.getLogger();
 
 
-    public UserSteps(WebDriver driver) {
-        super(driver);
 
-        this.loginPage = new LoginPage(driver);
+    public UserSteps() {
+        this.loginPage = new LoginPage();
     }
 
     public void login(String username, String password) {
-        loginPage.userNameInput.sendKeys(username);
-        loginPage.passwordInput.sendKeys(password);
-        loginPage.logInButton.click();
+        loginPage.getUserNameInputLocator().setValue(username);
+        loginPage.getPasswordInputLocator().setValue(password);
+        loginPage.getLogInButtonLocator().click();
     }
 
     public CheckoutSteps successfulLogin(User user) {
-        loggerUser.info("In checkoutStep user object contains next details: " + user);
         login(user.getUsername(), user.getPassword());
-
-        return new CheckoutSteps(driver);
+        return new CheckoutSteps();
     }
 }

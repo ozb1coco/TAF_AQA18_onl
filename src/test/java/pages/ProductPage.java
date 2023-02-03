@@ -1,28 +1,21 @@
 package pages;
 
 
-import baseEntities.BasePage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 
 
-public class ProductPage extends BasePage {
-    private Logger logger = LogManager.getLogger();
-    @FindBy(name = "add-to-cart-sauce-labs-bike-light")
-    public WebElement buttonAddToCart;
-    @FindBy(className = "shopping_cart_link")
-    public WebElement cartButton;
+public class ProductPage {
+    private By addToCartStuffButtonLocator = By.id("add-to-cart-sauce-labs-bike-light");
+    private By cartButtonLocator = By.id("shopping_cart_container");
 
-    public ProductPage(WebDriver driver) {
-        super(driver);
-        logger.info("PageFactory pattern is implemented in ProductPage class");
+    public SelenideElement getAddToCartStuffButtonLocator() {
+        return $(addToCartStuffButtonLocator);
+    }
+    public SelenideElement getCartButtonLocator(){
+        return $(cartButtonLocator);
     }
 
-    @Override
-    protected WebElement getPageIdentifier() {
-        return cartButton;
-    }
 }
