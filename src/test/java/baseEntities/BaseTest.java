@@ -44,6 +44,7 @@ public class BaseTest {
                 byte[] srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
                 saveScreenshot(srcFile);
             } catch (NoSuchSessionException ex) {
+
             }
         }
         */
