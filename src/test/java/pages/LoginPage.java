@@ -1,32 +1,28 @@
 package pages;
 
-import baseEntities.BasePage;
-import elements.Button;
-import elements.UIElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import baseEntities.BasePage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LoginPage extends BasePage {
-    // Блок описания локаторов для эментов
-    private final By emailInputLocator = By.id("name");
-    private final By passwordInputLocator = By.id("password");
-    private final By logInButtonLocator = By.id("button_primary");
-    private final By errorTextLocator = By.className("error-text");
+    Logger logger = LogManager.getLogger();
+    @FindBy(id = "user-name")
+    public WebElement userNameInput;
+    @FindBy(id = "password")
+    public WebElement passwordInput;
+    @FindBy(id = "login-button")
+    public WebElement logInButton;
 
-    // Блок иницализации страницы
     public LoginPage(WebDriver driver) {
         super(driver);
+        logger.info("PageFactory pattern is implemented in LoginPage class");
     }
 
     @Override
-    protected By getPageIdentifier() {
-        return logInButtonLocator;
+    protected WebElement getPageIdentifier() {
+        return logInButton;
     }
-
-    // Блок атомарных методов
-    public UIElement getEmailInput() { return new UIElement(driver, emailInputLocator);}
-    public UIElement getPassword() { return new UIElement(driver, passwordInputLocator);}
-    public Button getLogInButton() { return new Button(driver, logInButtonLocator);}
-    public UIElement getErrorTextElement() { return new UIElement(driver, errorTextLocator); }
 }
