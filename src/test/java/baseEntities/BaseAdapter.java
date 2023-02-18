@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeTest;
 public class BaseAdapter {
     protected Gson gson;
 
-    @BeforeTest
     public void setupApi() {
         gson = new Gson();
         gson = new GsonBuilder()

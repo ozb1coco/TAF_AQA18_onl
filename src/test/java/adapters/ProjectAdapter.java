@@ -9,12 +9,14 @@ import utils.Endpoints;
 import static io.restassured.RestAssured.given;
 
 public class ProjectAdapter extends BaseAdapter {
-    public Project add(Project project){
+
+    public Project add(Project project) {
         String jsonBody = gson.toJson(project);
 
         return add(jsonBody);
     }
-    public Project add(String jsonBody){
+
+    public Project add(String jsonBody) {
         return given()
                 .body(jsonBody)
                 .log().all()
@@ -26,4 +28,6 @@ public class ProjectAdapter extends BaseAdapter {
                 .extract()
                 .as(Project.class, ObjectMapperType.GSON);
     }
+
 }
+
