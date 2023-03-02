@@ -2,6 +2,7 @@ package adapters;
 
 import baseEntities.BaseAdapter;
 import io.restassured.mapper.ObjectMapperType;
+import io.restassured.response.Response;
 import models.Project;
 import org.apache.http.HttpStatus;
 import utils.Endpoints;
@@ -9,12 +10,23 @@ import utils.Endpoints;
 import static io.restassured.RestAssured.given;
 
 public class ProjectAdapter extends BaseAdapter {
-    public Project add(Project project){
-        String jsonBody = gson.toJson(project);
 
-        return add(jsonBody);
+    public Project add(Project project) {
+
+        return given()
+                .body(project, ObjectMapperType.GSON)
+                .log().all()
+                .when()
+                .post(Endpoints.ADD_PROJECT)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .as(Project.class, ObjectMapperType.GSON);
     }
-    public Project add(String jsonBody){
+
+    public Project add(String jsonBody) {
+
         return given()
                 .body(jsonBody)
                 .log().all()
@@ -26,4 +38,18 @@ public class ProjectAdapter extends BaseAdapter {
                 .extract()
                 .as(Project.class, ObjectMapperType.GSON);
     }
+    public Response addGetResponse(Project project) {
+
+        return given()
+                .body(project, ObjectMapperType.GSON)
+                .log().all()
+                .when()
+                .post(Endpoints.ADD_PROJECT)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract()
+                .response();
+    }
+
 }

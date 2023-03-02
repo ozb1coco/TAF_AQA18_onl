@@ -7,11 +7,19 @@ import java.util.Objects;
 public class Project {
     @SerializedName(value = "name")
     private String name;
+    @SerializedName(value = "announcement")
     private String announcement;
     @SerializedName(value = "suite_mode")
     private int type;
     @SerializedName(value = "show_announcement")
-    private boolean showAnnouncement;
+    private boolean shownAnnouncement;
+
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
     private boolean deleted;
 
     public String getName() {
@@ -38,12 +46,12 @@ public class Project {
         this.type = type;
     }
 
-    public boolean isShowAnnouncement() {
-        return showAnnouncement;
+    public boolean isShownAnnouncement() {
+        return shownAnnouncement;
     }
 
-    public void setShowAnnouncement(boolean showAnnouncement) {
-        this.showAnnouncement = showAnnouncement;
+    public void setShownAnnouncement(boolean shownAnnouncement) {
+        this.shownAnnouncement = shownAnnouncement;
     }
 
     public boolean isDeleted() {
@@ -60,7 +68,7 @@ public class Project {
                 "name='" + name + '\'' +
                 ", announcement='" + announcement + '\'' +
                 ", type=" + type +
-                ", showAnnouncement=" + showAnnouncement +
+                ", shownAnnouncement=" + shownAnnouncement +
                 ", deleted=" + deleted +
                 '}';
     }
@@ -70,11 +78,11 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return type == project.type && showAnnouncement == project.showAnnouncement && Objects.equals(name, project.name) && Objects.equals(announcement, project.announcement);
+        return type == project.type && shownAnnouncement == project.shownAnnouncement && Objects.equals(name, project.name) && Objects.equals(announcement, project.announcement);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, announcement, type, showAnnouncement);
+        return Objects.hash(name, announcement, type, shownAnnouncement);
     }
 }
