@@ -1,55 +1,53 @@
 package adapters;
 
-import baseEntities.BaseAdapter;
+import dbTables.ProjectTable;
 import io.restassured.mapper.ObjectMapperType;
-import io.restassured.response.Response;
 import models.Project;
 import org.apache.http.HttpStatus;
+import services.DataBaseService;
 import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
 
-public class ProjectAdapter extends BaseAdapter {
+public class ProjectAdapter {
+    private Project expectedProject;
+    private ProjectTable projectTable;
+    private int projectId;
 
-    public Project add(Project project) {
+    public ProjectAdapter(DataBaseService dbService) {
+        projectTable = new ProjectTable(dbService);
+    }
 
-        return given()
-                .body(project, ObjectMapperType.GSON)
-                .log().all()
+    public int addProject() {
+        expectedProject = Project.builder()
+                .name("ProjectByTest123")
+                .announcement("This is a description")
+                .showAnnouncement(true)
+                .type(1)
+                .build();
+
+        projectTable.addProject(expectedProject);
+
+        return projectId = given()
+                .body(expectedProject, ObjectMapperType.GSON)
                 .when()
                 .post(Endpoints.ADD_PROJECT)
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
-                .as(Project.class, ObjectMapperType.GSON);
+                .jsonPath()
+                .getInt("id");
     }
 
-    public Project add(String jsonBody) {
-
-        return given()
-                .body(jsonBody)
-                .log().all()
+    public void deleteProject(int projectId) {
+        given()
+                .pathParam("project_id", projectId)
                 .when()
-                .post(Endpoints.ADD_PROJECT)
+                .post(Endpoints.DELETE_PROJECT)
                 .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .as(Project.class, ObjectMapperType.GSON);
-    }
-    public Response addGetResponse(Project project) {
+                .statusCode(HttpStatus.SC_OK);
 
-        return given()
-                .body(project, ObjectMapperType.GSON)
-                .log().all()
-                .when()
-                .post(Endpoints.ADD_PROJECT)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .response();
+        projectTable.deleteProjectById(projectId);
     }
-
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
+@Builder
 public class Milestone {
     @EqualsAndHashCode.Exclude
     private int id;

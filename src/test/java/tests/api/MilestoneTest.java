@@ -1,66 +1,48 @@
 package tests.api;
 
-import adapters.MilestoneAdapter;
-import adapters.ProjectAdapter;
-import baseEntities.BaseApiGsonTest;
+import baseEntities.BaseApiTest;
 import models.Milestone;
-import models.Project;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-public class MilestoneTest extends BaseApiGsonTest {
 
-    int projectId;
-    int milestoneId;
-    Milestone expectedMilestone;
-    ProjectAdapter projectAdapter = new ProjectAdapter();
-    MilestoneAdapter milestoneAdapter = new MilestoneAdapter();
 
+public class MilestoneTest extends BaseApiTest {
     @Test
-    public void addProject() {
-
-        Project expectedProject = new Project();
-        expectedProject.setName("Project_01");
-        expectedProject.setAnnouncement("Description of Project");
-        expectedProject.setType(1);
-        expectedProject.setShownAnnouncement(true);
-
-        Project actualProject = projectAdapter.add(expectedProject);
-        projectId = actualProject.getId();
-        Assert.assertEquals(expectedProject, actualProject);
-    }
-
-
-    @Test(dependsOnMethods = "addProject")
     public void addMilestone() {
-        expectedMilestone = new Milestone();
-        expectedMilestone.setName("Milestone 1");
-        expectedMilestone.setDescription("Description of milestone");
-        expectedMilestone.setCompleted(false);
+        projectId = projectAdapter.addProject();
 
-        Milestone actualMilestone = milestoneAdapter.addMilestone(expectedMilestone, projectId);
+        expectedMilestone = Milestone.builder()
+                .name("MilestoneTest")
+                .description("TestNumber1546")
+                .references("TestByTest")
+                .completed(false)
+                .build();
 
-        milestoneId = actualMilestone.getId();
+        milestoneId = milestoneAdapter.addMilestone(expectedMilestone, projectId);
     }
 
     @Test(dependsOnMethods = "addMilestone")
     public void getMilestone() {
-        Milestone actualMilestone = milestoneAdapter.getMilestone(milestoneId);
-        Assert.assertEquals(actualMilestone, expectedMilestone);
+        milestoneAdapter.getMilestone(expectedMilestone, milestoneId);
     }
 
     @Test(dependsOnMethods = "getMilestone")
     public void updateMilestone() {
-        expectedMilestone.setName("Updated milestone");
-        expectedMilestone.setDescription("New Description");
-        expectedMilestone.setCompleted(true);
+        Milestone updateMilestone = Milestone.builder()
+                .name("MilestoneUpdate")
+                .description("New Update")
+                .references("reference for milestone")
+                .build();
 
-        Milestone actualMilestone = milestoneAdapter.updateMilestone(milestoneId, expectedMilestone);
-        Assert.assertEquals(actualMilestone, expectedMilestone);
+        milestoneAdapter.updateMilestone(updateMilestone, milestoneId);
     }
 
     @Test(dependsOnMethods = "updateMilestone")
     public void deleteMilestone() {
         milestoneAdapter.deleteMilestone(milestoneId);
-        milestoneAdapter.getDeletedMilestone(milestoneId);
+    }
+
+    @Test(dependsOnMethods = "deleteMilestone")
+    public void deleteProject() {
+        projectAdapter.deleteProject(projectId);
     }
 }
